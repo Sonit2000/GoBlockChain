@@ -10,7 +10,7 @@
                 url:'/wallet',
                 type:'POST',
                 success: function (response){
-                    $('#public_key').val(response['public_key)'])
+                    $('#public_key').val(response['public_key'])
                     $('#private_key').val(response['private_key'])
                     $('#blockchain_address').val(response['blockchain_address'])
                     console.info(response)
@@ -18,6 +18,7 @@
                 error: function(error){
                     console.error(error)
                 }
+
             })
         })
     </script>
