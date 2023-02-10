@@ -65,7 +65,7 @@ func (w *Wallet) PrivateKeyStr() string {
 	return fmt.Sprintf("%x", w.privateKey.D.Bytes())
 }
 func (w *Wallet) PublicKeyStr() string {
-	return fmt.Sprintf("%x%x", w.privateKey.X.Bytes(), w.publicKey.Y.Bytes())
+	return fmt.Sprintf("%064x%064x", w.privateKey.X.Bytes(), w.publicKey.Y.Bytes())
 }
 func (w *Wallet) BlockchainAddress() string {
 	return w.blockChainAddress
@@ -129,7 +129,7 @@ func (tr *TransactionRequest) Validate() bool {
 		tr.SenderBlockchainAddress == nil ||
 		tr.SenderPrivateKey == nil ||
 		tr.SenderPublicKey == nil ||
-		tr.RecipientBlockchainAddress == nil {
+		tr.Value == nil {
 		return false
 	}
 	return true

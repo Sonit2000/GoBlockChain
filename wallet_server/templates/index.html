@@ -35,8 +35,9 @@
                 }
                 $.ajax({
                     url:'/transaction',
-                    type:'POST',
+                    type:"POST",
                     contentType:'application/json',
+                    data: JSON.stringify(transaction_data),
                     success : function (response){
                         console.info(response)
                         alert('Send success')
@@ -47,6 +48,26 @@
                     }
                 })
             })
+            function reload_amount(){
+                let data = {'blockchain_address': $('#blockchain_address').val()}
+                $.ajax({
+                    url:'/wallet/amount',
+                    type:"GET",
+                    data:JSON.stringify(data),
+                    success: function(response){
+                        let amount = response['amount']
+                        $("#wallet_amount").text(amount)
+                        console.info(amount)
+                    },
+                    error: function(response){
+                        console.error(response)
+                    }
+                })
+            }
+            $('#reload_wallet').click(function(){
+                reload_amount();
+            });
+            setInterval(reload_amount,3000)
         })
     </script>
 </head>
